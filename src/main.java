@@ -73,9 +73,9 @@ public class main {
 
 
     private static void chiffrieren(String x, int numberBlocks) {
-        //initialer Weissschritt
         String []blockX =new String [x.length()/numberBlocks];
-        Byte []blockXByte;
+        byte []blockXInt = new byte[blockX.length];
+        byte [] xInital = new byte [1];
         //teile chiffretext in String Blöcke
         for(int i=0; i<blockX.length; i++){
             blockX[i]=x.substring(i*4,i*4+4);
@@ -83,20 +83,19 @@ public class main {
 
         //teile String-Chiffretext-Blöcke in Byte Blöcke
         for(int i=0; i<blockX.length; i++){
-            System.out.println(blockX[i]);
+            blockXInt[i] = Byte.parseByte((blockX[i]),2);
         }
+
+        //initialer Weissschritt
+
+
         String val1="1100";
         String val2="0000";
 
-        byte[] x3= new BigInteger(val1,2).toByteArray();
-        byte[] x4= new BigInteger(val2,2).toByteArray();
-        int[] x2= new int[4];
 
-
-
-        blockX[0]=x3[0]^x4[0];
+      //  blockX[0]=x3[0]^x4[0];
 //        for(int i=0; i<x.length; i++){
-//            x1[i]=x[i]^k.get(i);
+//            ;
 //        }
        // System.out.println(Integer.toString(x1[0],2));
         //reguläreRunde();

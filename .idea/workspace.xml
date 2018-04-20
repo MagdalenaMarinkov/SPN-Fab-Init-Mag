@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3583c66c-1a3a-4c62-bc11-39fe634163cd" name="Default" comment="" />
+    <list default="true" id="3583c66c-1a3a-4c62-bc11-39fe634163cd" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main.java" afterPath="$PROJECT_DIR$/src/main.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,13 +18,23 @@
       <file leaf-file-name="main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="86" column="9" lean-forward="true" selection-start-line="86" selection-start-column="9" selection-end-line="86" selection-end-column="9" />
+            <state relative-caret-position="198">
+              <caret line="63" column="25" lean-forward="true" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2911#2912#0" expanded="true" />
-                <element signature="e#2948#2949#0" expanded="true" />
+                <element signature="e#2831#2832#0" expanded="true" />
+                <element signature="e#2868#2869#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Byte.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Byte.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="153" column="0" lean-forward="false" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -49,6 +62,9 @@
     <findStrings>
       <find>import java\.io\.BufferedReader\;\nimport java\.io\.FileNotFoundException\;\nimport java\.io\.FileReader\;\nimport java\.io\.IOException\;\nimport java\.util\.HashMap\;\nimport java\.util\.Map\;\n\npublic class main \{\n\n    private static int r \= 4\;\n    private static int n \= 4\;\n    private static int m \= 4\;\n    private static int s \= 32\;\n    private static Map\&lt;Integer\, Integer\&gt; k\;\n\n    private static Map\&lt;Integer\, Integer\&gt; sBox\;\n    private static Map\&lt;Integer\, Integer\&gt; bitPer\;\n\n    private static Map\&lt;Integer\, Integer\&gt; x\;\n\n\n    \/\/Integer\.toString\(100\, 2\)\n\n    private static void init\(\) \{\n        \/\/Sbox initialisieren\n        sBox \= new HashMap\&lt;Integer\, Integer\&gt;\(\)\;\n        sBox\.put\(0\, 14\)\;\/\/E\n        sBox\.put\(1\, 4\)\;\n        sBox\.put\(2\, 13\)\;\/\/D\n        sBox\.put\(3\, 1\)\;\n        sBox\.put\(4\, 2\)\;\n        sBox\.put\(5\, 15\)\;\/\/F\n        sBox\.put\(6\, 11\)\;\/\/B\n        sBox\.put\(7\, 8\)\;\n        sBox\.put\(8\, 3\)\;\n        sBox\.put\(9\, 10\)\;\/\/A\n        sBox\.put\(10\, 6\)\;\n        sBox\.put\(11\, 12\)\;\/\/B\, C\n        sBox\.put\(12\, 5\)\;\/\/C\n        sBox\.put\(13\, 9\)\;\/\/D\n        sBox\.put\(14\, 0\)\;\/\/E\n        sBox\.put\(15\, 7\)\;\/\/F\n\n        \/\/Bitpermutation initialisieren\n        bitPer \= new HashMap\&lt;Integer\, Integer\&gt;\(\)\;\n        bitPer\.put\(0\, 0\)\;\n        bitPer\.put\(1\, 4\)\;\n        bitPer\.put\(2\, 8\)\;\n        bitPer\.put\(3\, 12\)\;\/\/C\n        bitPer\.put\(4\, 1\)\;\n        bitPer\.put\(5\, 5\)\;\n        bitPer\.put\(6\, 9\)\;\n        bitPer\.put\(7\, 13\)\;\/\/D\n        bitPer\.put\(8\, 2\)\;\n        bitPer\.put\(9\, 6\)\;\n        bitPer\.put\(10\, 10\)\;\/\/A\n        bitPer\.put\(11\, 14\)\;\/\/B\, E\n        bitPer\.put\(12\, 3\)\;\/\/C\n        bitPer\.put\(13\, 7\)\;\/\/D\n        bitPer\.put\(14\, 11\)\;\/\/E\, B\n        bitPer\.put\(15\, 15\)\;\/\/F\, F\n\n        \/\/Rundenschlüssel initialisieren 4i\:k\=0011 1010 1001 0100 1101 0110 0011 1111\n        k \= new HashMap\&lt;Integer\, Integer\&gt;\(\)\;\n        k\.put\(0\, 3\)\;\/\/0011\n        k\.put\(1\, 10\)\;\/\/1010\n        k\.put\(2\, 9\)\;\/\/1001\n        k\.put\(3\, 4\)\;\/\/0100\n        k\.put\(4\, 13\)\;\/\/1101\n        k\.put\(5\, 5\)\;\/\/0110\n        k\.put\(6\, 3\)\;\/\/0011\n        k\.put\(7\, 15\)\;\/\/1111\n\n        x \= new HashMap\&lt;Integer\, Integer\&gt;\(\)\;\n    \}\n\n\n    private static void decheffrieren\(int \[\] x\) \{\n        \/\/initialer Weissschritt\n        for\(int i\=0\; i\&lt;x\.length\; i\+\+ \)\n        reguläreRunde\(\)\;\n    \}\n\n    private static void reguläreRunde\(\) \{\n        abschliessendeRunde\(\)\;\n    \}\n\n    private static void abschliessendeRunde\(\) \{\n\n    \}\n\n    public static void main\(String\[\] args\) \{\n        init\(\)\;\n        decheffrieren\(\)\;\n        String line\;\n\n        try \{\n            BufferedReader in \= new BufferedReader\(new FileReader\(\&quot;res\/chiffre\.txt\&quot;\)\)\;\n            \/\/TODO\: geht noch nicht\, zeigt null\n            while \(\(\(line \= in\.readLine\(\)\) \!\= null\)\) \{\n                line \= in\.readLine\(\)\;\n            \}\n            System\.out\.println\(line\)\;\n\n        \} catch \(FileNotFoundException e\) \{\n            e\.printStackTrace\(\)\;\n        \} catch \(IOException e\) \{\n            e\.printStackTrace\(\)\;\n        \}\n    \}\n\}\n</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="modificationStamps">
@@ -86,10 +102,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-13" />
-    <option name="y" value="-13" />
-    <option name="width" value="1612" />
-    <option name="height" value="876" />
+    <option name="width" value="2560" />
+    <option name="height" value="1371" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -129,12 +143,12 @@
         </subPane>
       </pane>
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../FHNW/8.Semester/ip5/ChoroMapsFX" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -277,11 +291,12 @@
       <workItem from="1524056608301" duration="6393000" />
       <workItem from="1524117786657" duration="1484000" />
       <workItem from="1524200645962" duration="2359000" />
+      <workItem from="1524223671218" duration="2054000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10236000" />
+    <option name="totallyTimeSpent" value="12290000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2586" height="1386" extended-state="6" />
@@ -295,19 +310,19 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295053" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295053" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37055016" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20226537" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -333,8 +348,28 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2911#2912#0" expanded="true" />
-            <element signature="e#2948#2949#0" expanded="true" />
+            <element signature="e#2831#2832#0" expanded="true" />
+            <element signature="e#2868#2869#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/chiffre.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="128" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2831#2832#0" expanded="true" />
+            <element signature="e#2868#2869#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -353,8 +388,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2911#2912#0" expanded="true" />
-            <element signature="e#2948#2949#0" expanded="true" />
+            <element signature="e#2831#2832#0" expanded="true" />
+            <element signature="e#2868#2869#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -375,14 +410,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Byte.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="153" column="0" lean-forward="false" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="86" column="9" lean-forward="true" selection-start-line="86" selection-start-column="9" selection-end-line="86" selection-end-column="9" />
+        <state relative-caret-position="198">
+          <caret line="63" column="25" lean-forward="true" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2911#2912#0" expanded="true" />
-            <element signature="e#2948#2949#0" expanded="true" />
+            <element signature="e#2831#2832#0" expanded="true" />
+            <element signature="e#2868#2869#0" expanded="true" />
           </folding>
         </state>
       </provider>
