@@ -18,6 +18,15 @@ public class SPN {
         this.bitPermutation = bitPermutation;
     }
 
+    public String encrypt(int rounds) {
+        this.initialStep();
+        for(int i = 1; i < rounds - 1; i += 1) {
+            this.roundStep(i);
+        }
+        this.lastStep();
+        return intermediateResult;
+    }
+
     public String[] divideToBlocks(int size, String string) {
         return string.split("(?<=\\G.{" + size + "})"); // matches every n-th character
     }
