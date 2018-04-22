@@ -1,5 +1,9 @@
+package test;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
+import spn.KeyCalculation;
+import spn.Spn;
 
 import java.util.HashMap;
 import java.util.Map;
