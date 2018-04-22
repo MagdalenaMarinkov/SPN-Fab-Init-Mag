@@ -1,4 +1,4 @@
-package spn;
+package java;
 
 /**
  * @author Yannik Inniger

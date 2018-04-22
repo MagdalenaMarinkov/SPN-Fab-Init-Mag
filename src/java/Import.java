@@ -1,4 +1,4 @@
-package spn;
+package java;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package spn;
+package java.spn;
 
 /**
  * @author yannikinniger on 21.04.18.
