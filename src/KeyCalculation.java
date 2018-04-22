@@ -1,5 +1,3 @@
-package app;
-
 /**
  * @author yannikinniger on 21.04.18.
  */
