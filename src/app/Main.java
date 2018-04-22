@@ -1,10 +1,10 @@
-package java;
+package app;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.spn.KeyCalculation;
-import java.spn.Spn;
+import app.spn.KeyCalculation;
+import app.spn.Spn;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;

@@ -1,7 +1,7 @@
-package java.spn;
+package app.spn;
 
-import java.CryptoAlgorithm;
-import java.Util;
+import app.CryptoAlgorithm;
+import app.Util;
 import java.util.Map;
 import java.util.stream.Collectors;
 
