@@ -1,12 +1,14 @@
-package spn;
+package java.spn;
 
+import java.CryptoAlgorithm;
+import java.Util;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
  * @author yannikinniger on 21.04.18.
  */
-public class Spn {
+public class Spn implements CryptoAlgorithm {
 
     private int[] keys;
     private int numberOfRounds;
@@ -24,10 +26,12 @@ public class Spn {
         this.bitPermutation = bitPermutation;
     }
 
+    @Override
     public String encrypt(String text) {
         return doRounds(text, keys);
     }
 
+    @Override
     public String decrypt(String cipherText) {
         this.sBoxInv = getSBoxInv();
         int[] decryptionKeys = getDecryptionKeys();

@@ -13,15 +13,11 @@ public class Main {
     private static int n = 4;
     private static int m = 4;
     private static int s = 32;
-    private static Map<Integer, Integer> k;
 
     private static Map<String, String> sBox;
     private static Map<Integer, Integer> bitPer;
 
     private static KeyCalculation keyCalc;
-
-    private static String x;
-
 
     private static void init() {
         //Sbox initialisieren
