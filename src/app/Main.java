@@ -8,7 +8,9 @@ import app.spn.Spn;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
-
+/**
+ * @author Fabian Bissig, Yannik Inniger, Magdalena Marinkov
+ */
 public class Main {
 
     private static int r = 4;
@@ -74,8 +76,12 @@ public class Main {
     public static void main(String[] args) {
         init();
         String text = readFile("res/chiffre.txt");
-        String key = "0011 1010 1001 0100 1101 0110 0011 1111";
-        Spn spn = new Spn(key, keyCalc, r, sBox, bitPer);
+        System.out.println(text.length() % 16);
+        String key = "00111010100101001101011000111111";
+        CryptoAlgorithm spn = new Spn(key, keyCalc, r, sBox, bitPer);
+        Ctr ctr= new Ctr(spn,16);
+        System.out.println(ctr.decrypt(text));
+
     }
 
     private static String readFile(String fileName) {

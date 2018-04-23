@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * @author yannikinniger on 21.04.18.
+ * @author Fabian Bissig, Yannik Inniger, Magdalena Marinkov
  */
 public class Spn implements CryptoAlgorithm {
 

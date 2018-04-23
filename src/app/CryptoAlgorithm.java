@@ -1,7 +1,7 @@
 package app;
 
 /**
- * @author Yannik Inniger
+ * @author Fabian Bissig, Yannik Inniger, Magdalena Marinkov
  */
 public interface CryptoAlgorithm {
 

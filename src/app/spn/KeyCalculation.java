@@ -1,7 +1,7 @@
 package app.spn;
 
 /**
- * @author yannikinniger on 21.04.18.
+ * @author Fabian Bissig, Yannik Inniger, Magdalena Marinkov
  */
 public interface KeyCalculation {
     int[] calculateKeys(String key, int numberOfRounds);

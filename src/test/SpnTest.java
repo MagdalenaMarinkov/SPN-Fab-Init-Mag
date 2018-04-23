@@ -11,7 +11,7 @@ import java.util.Map;
 import static junit.framework.TestCase.assertEquals;
 
 /**
- * @author yannikinniger on 21.04.18.
+ * @author Fabian Bissig, Yannik Inniger, Magdalena Marinkov
  */
 public class SpnTest {
 
