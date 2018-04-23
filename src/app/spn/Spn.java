@@ -28,22 +28,22 @@ public class Spn implements CryptoAlgorithm {
 
     @Override
     public String encrypt(String text) {
-        return doRounds(text, keys);
+        return doRounds(text, keys, sBox);
     }
 
     @Override
     public String decrypt(String cipherText) {
         this.sBoxInv = getSBoxInv();
         int[] decryptionKeys = getDecryptionKeys();
-        return doRounds(cipherText, decryptionKeys);
+        return doRounds(cipherText, decryptionKeys, sBoxInv);
     }
 
-    private String doRounds(String text, int[] keys) {
+    private String doRounds(String text, int[] keys, Map<String, String> sBox) {
         String intermediateResult = this.initialStep(text, keys[0]);
         for (int i = 1; i < numberOfRounds; i += 1) {
-            intermediateResult = this.roundStep(intermediateResult, keys[i]);
+            intermediateResult = this.roundStep(intermediateResult, keys[i], sBox);
         }
-        intermediateResult = this.lastStep(intermediateResult, keys[keys.length - 1]);
+        intermediateResult = this.lastStep(intermediateResult, keys[keys.length - 1], sBox);
         return intermediateResult;
     }
 
@@ -53,24 +53,24 @@ public class Spn implements CryptoAlgorithm {
         return Util.addPaddingToBinary(intermediateResult, text.length());
     }
 
-    public String lastStep(String intermediateResult, int key) {
+    public String lastStep(String intermediateResult, int key, Map<String, String> sBox) {
         int resultLength = intermediateResult.length();
-        intermediateResult = runThroughSBox(intermediateResult);
+        intermediateResult = runThroughSBox(intermediateResult, sBox);
         intermediateResult = Util.xOr(Integer.parseInt(intermediateResult, 2), key);
 
         return Util.addPaddingToBinary(intermediateResult, resultLength);
     }
 
-    public String roundStep(String intermediateResult, int key) {
+    public String roundStep(String intermediateResult, int key, Map<String, String> sBox) {
         int resultLength = intermediateResult.length();
-        intermediateResult = runThroughSBox(intermediateResult);
+        intermediateResult = runThroughSBox(intermediateResult, sBox);
         intermediateResult = doBitPermutation(intermediateResult);
         intermediateResult = Util.xOr(Integer.parseInt(intermediateResult, 2), key);
 
         return Util.addPaddingToBinary(intermediateResult, resultLength);
     }
 
-    public String runThroughSBox(String intermediateResult) {
+    public String runThroughSBox(String intermediateResult, Map<String, String> sBox) {
         int sBoxLength = sBox.keySet().iterator().next().length();
 
         String[] dividedBinary = Util.divideToBlocks(sBoxLength, intermediateResult);
