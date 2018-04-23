@@ -1,52 +1,90 @@
 package app;
 
+import java.util.Random;
+
 /**
  * @author Fabian Bissig, Yannik Inniger, Magdalena Marinkov
  */
 public class Ctr {
 
+    private static final int BASE = 2;
+    private static final Random RANDOM = new Random();
+
     private final CryptoAlgorithm algorithm;
     private final int blockSize;
-    private final int yMinusOne = 65536; //1010 //TODO:random generate
     private final int twoRaisedL;
-    private final int k = 8;//1000
 
     public Ctr(CryptoAlgorithm algorithm, int blockSize) {
         this.algorithm = algorithm;
         this.blockSize = blockSize;
-        twoRaisedL = (int)Math.pow((double)2 , (double)blockSize);
+        twoRaisedL = (int) Math.pow(BASE, (double) blockSize);
     }
 
     public String encrypt(String text) {
+        String binaryText = convertStringToBinary(text);
+
+        int yMinusOne = RANDOM.nextInt((int) Math.pow(BASE, blockSize));
+        //yMinusOne = Integer.parseInt("0000010011010010", 2);
         StringBuilder sb = new StringBuilder();
-        String[] blocks = Util.divideToBlocks(blockSize, text);
+        String[] blocks = Util.divideToBlocks(blockSize, binaryText);
+        sb.append(Util.convertToBinaryWithPadding(yMinusOne, blockSize));
 
-        String result;
-        sb.append(Integer.toBinaryString(yMinusOne));
-        for (int i = 0; i < blocks.length; i++) {
-            String param = Integer.toBinaryString((yMinusOne+i) % twoRaisedL);
-            result= algorithm.encrypt(param);
-            String yi=Util.xOr(Integer.parseInt(result,2),Integer.parseInt(blocks[i],2));
-            sb.append(Util.addPaddingToBinary(yi,blockSize));
-        }
-
+        sb.append(iterateOverBlocks(blocks, yMinusOne));
         return sb.toString();
     }
 
     public String decrypt(String text) {
-        StringBuilder sb = new StringBuilder();
+        int yMinusOne = Integer.parseInt(text.substring(0, blockSize), 2);
+        text = text.substring(blockSize, text.length());
         String[] blocks = Util.divideToBlocks(blockSize, text);
 
-        String result;
-        for (int i = 0; i < blocks.length; i++) {
+        String result = iterateOverBlocks(blocks, yMinusOne);
+        if (result.length() % 8 != 0) {
+            result = removePadding(result);
+        }
+        return convertBinaryToString(result);
+    }
 
-            String param = Util.addPaddingToBinary(Integer.toBinaryString((yMinusOne+i) % twoRaisedL), blockSize);
-            result= algorithm.decrypt(param);
-            String xi=Util.xOr(Integer.parseInt(result,2),Integer.parseInt(blocks[i],2));
-            sb.append(Util.addPaddingToBinary(xi,blockSize));
+    private String iterateOverBlocks(String[] blocks, int yMinusOne) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < blocks.length; i++) {
+            String toEncrypt = Util.convertToBinaryWithPadding((yMinusOne + i) % twoRaisedL, blockSize);
+            String toXor = algorithm.encrypt(toEncrypt);
+            String result = Util.xOr(toXor, blocks[i]);
+            sb.append(Util.addPaddingToBinary(result, blockSize));
+        }
+        return sb.toString();
+    }
+
+    private String convertStringToBinary(String text) {
+        StringBuilder binarySb = new StringBuilder();
+        for (char c : text.toCharArray()) {
+            binarySb.append(Util.addPaddingToBinary(Integer.toBinaryString((int)c), 8));
         }
 
-        return sb.toString();
+        binarySb.append("1");
+        while (binarySb.length() % blockSize != 0) {
+            binarySb.append("0");
+        }
+        return binarySb.toString();
+    }
+
+    private String convertBinaryToString(String text) {
+        StringBuilder asciiSb = new StringBuilder();
+        if (text.length() % 8 == 0) {
+            String[] asciiText = Util.divideToBlocks(8, text);
+            for (String asciiChar : asciiText) {
+                asciiSb.append((char)Integer.parseInt(asciiChar, 2));
+            }
+            return asciiSb.toString();
+        } else {
+            throw new IllegalArgumentException("text not dividable through 8");
+        }
+    }
+
+    private String removePadding(String text) {
+        int paddingStart = text.lastIndexOf("1");
+        return text.substring(0, paddingStart);
     }
 
 }

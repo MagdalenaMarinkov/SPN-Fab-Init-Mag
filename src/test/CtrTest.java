@@ -37,13 +37,25 @@ public class CtrTest {
     }
 
     @Test
-    public void shouldEncryptBlocksCorrectly() {
-        String text = "1001110101110001";
+    public void shouldEncryptBlocks() {
+        String text = "asdf";
+        Ctr ctr = new Ctr(vernumAlgorithm, BLOCK_SIZE);
+        String encrypted = ctr.encrypt(text);
+
+        String expected = "asdf";
+
+        String result = ctr.decrypt(encrypted);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void shouldDecryptString() {
+        String cipherText = "0010110010101011111010001011011001111010";
         Ctr ctr = new Ctr(vernumAlgorithm, BLOCK_SIZE);
 
-        String expected = "10101011111000110100";
+        String expected = "asdf";
 
-        String result = ctr.encrypt(text);
+        String result = ctr.decrypt(cipherText);
         assertEquals(expected, result);
     }
 
