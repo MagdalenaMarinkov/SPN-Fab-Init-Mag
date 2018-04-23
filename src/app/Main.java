@@ -13,60 +13,57 @@ import java.util.stream.Stream;
  */
 public class Main {
 
-    private static int r = 4;
-    private static int n = 4;
-    private static int m = 4;
-    private static int s = 32;
+    private static final int NUMBER_OF_ROUNDS = 4;
 
     private static Map<String, String> sBox;
-    private static Map<Integer, Integer> bitPer;
+    private static Map<Integer, Integer> bitPermutation;
 
     private static KeyCalculation keyCalc;
 
     private static void init() {
         //Sbox initialisieren
         sBox = new HashMap<>();
-        sBox.put("0", "14");//E
-        sBox.put("1", "4");
-        sBox.put("2", "13");//D
-        sBox.put("3", "1");
-        sBox.put("4", "2");
-        sBox.put("5", "15");//F
-        sBox.put("6", "11");//B
-        sBox.put("7", "8");
-        sBox.put("8", "3");
-        sBox.put("9", "10");//A
-        sBox.put("10", "6");
-        sBox.put("11", "12");//B, C
-        sBox.put("12", "5");//C
-        sBox.put("13", "9");//D
-        sBox.put("14", "0");//E
-        sBox.put("15", "7");//F
+        sBox.put("0000", "1110");//E
+        sBox.put("0001", "0100");
+        sBox.put("0010", "1101");//D
+        sBox.put("0011", "0001");
+        sBox.put("0100", "0010");
+        sBox.put("0101", "1111");//F
+        sBox.put("0110", "1011");//B
+        sBox.put("0111", "1000");
+        sBox.put("1000", "0011");
+        sBox.put("1001", "1010");//A
+        sBox.put("1010", "0110");
+        sBox.put("1011", "1100");//B, C
+        sBox.put("1100", "0101");//C
+        sBox.put("1101", "1001");//D
+        sBox.put("1110", "0000");//E
+        sBox.put("1111", "0111");//F
 
         //Bitpermutation initialisieren
-        bitPer = new HashMap<Integer, Integer>();
-        bitPer.put(0, 0);
-        bitPer.put(1, 4);
-        bitPer.put(2, 8);
-        bitPer.put(3, 12);//C
-        bitPer.put(4, 1);
-        bitPer.put(5, 5);
-        bitPer.put(6, 9);
-        bitPer.put(7, 13);//D
-        bitPer.put(8, 2);
-        bitPer.put(9, 6);
-        bitPer.put(10, 10);//A
-        bitPer.put(11, 14);//B, E
-        bitPer.put(12, 3);//C
-        bitPer.put(13, 7);//D
-        bitPer.put(14, 11);//E, B
-        bitPer.put(15, 15);//F, F
+        bitPermutation = new HashMap<Integer, Integer>();
+        bitPermutation.put(0, 0);
+        bitPermutation.put(1, 4);
+        bitPermutation.put(2, 8);
+        bitPermutation.put(3, 12);//C
+        bitPermutation.put(4, 1);
+        bitPermutation.put(5, 5);
+        bitPermutation.put(6, 9);
+        bitPermutation.put(7, 13);//D
+        bitPermutation.put(8, 2);
+        bitPermutation.put(9, 6);
+        bitPermutation.put(10, 10);//A
+        bitPermutation.put(11, 14);//B, E
+        bitPermutation.put(12, 3);//C
+        bitPermutation.put(13, 7);//D
+        bitPermutation.put(14, 11);//E, B
+        bitPermutation.put(15, 15);//F, F
 
         keyCalc = (key, numberOfRounds) -> {
             key = key.replace(" ", "");
             int[] keys = new int[numberOfRounds + 1];
             for (int i = 0; i < numberOfRounds + 1; i += 1) {
-                String currentKey = key.substring(i*4,i*4+4);
+                String currentKey = key.substring(i*4,i*4+16);
                 keys[i] = Integer.parseInt(currentKey, 2);
             }
             return keys;
@@ -76,12 +73,12 @@ public class Main {
     public static void main(String[] args) {
         init();
         String text = readFile("res/chiffre.txt");
-        System.out.println(text.length() % 16);
         String key = "00111010100101001101011000111111";
-        CryptoAlgorithm spn = new Spn(key, keyCalc, r, sBox, bitPer);
+        CryptoAlgorithm spn = new Spn(key, keyCalc, NUMBER_OF_ROUNDS, sBox, bitPermutation);
         Ctr ctr= new Ctr(spn,16);
         System.out.println(ctr.decrypt(text));
-
+        String encrypted = ctr.encrypt("Gut gemacht!");
+        System.out.println(encrypted.endsWith(text));
     }
 
     private static String readFile(String fileName) {
